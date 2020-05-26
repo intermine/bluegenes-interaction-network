@@ -19,10 +19,10 @@ function getGraphData(data) {
 				elements.push({
 					group: 'nodes',
 					data: {
-						id: primaryIdentifier,
+						id: symbol,
 						info: {
 							class: interactors.class,
-							symbol
+							primaryIdentifier
 						}
 					}
 				});
@@ -30,7 +30,7 @@ function getGraphData(data) {
 					group: 'edges',
 					data: {
 						target: el.symbol,
-						source: primaryIdentifier
+						source: symbol
 					}
 				});
 			});
@@ -56,7 +56,14 @@ function createCytoscapeConfig(elements) {
 					'line-color': '#ccc'
 				}
 			}
-		]
+		],
+		layout: {
+			name: 'cose-bilkent',
+			quality: 'draft',
+			fit: true,
+			padding: 20,
+			idealEdgeLength: 250
+		}
 	};
 }
 
