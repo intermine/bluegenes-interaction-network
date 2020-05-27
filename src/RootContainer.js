@@ -14,11 +14,16 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	}, []);
 	return (
 		<div className="rootContainer">
-			{data.length ? (
-				<GeneInteractionNetwork data={data} />
-			) : (
-				<h1>Loading...</h1>
-			)}
+			<div className="innerContainer">
+				<div className="graph">
+					<span className="chart-title">Gene Interaction Network</span>
+					{data.length ? (
+						<GeneInteractionNetwork data={data} />
+					) : (
+						<h1>Loading...</h1>
+					)}
+				</div>
+			</div>
 		</div>
 	);
 };

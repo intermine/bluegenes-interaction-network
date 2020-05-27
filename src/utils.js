@@ -26,7 +26,7 @@ function getGraphData(data) {
 						}
 					}
 				});
-				elements.push({
+				interactors.details.elements.push({
 					group: 'edges',
 					data: {
 						target: el.symbol,
