@@ -14,10 +14,10 @@
 		border: 1px solid black;
 		padding: 20px;
 
-    .innerContainer {
-      display: flex;
+		.innerContainer {
+			display: flex;
 
-      .graph {
+			.graph {
 				width: calc(100vw - 15rem);
 
 				.chart-title {
@@ -31,9 +31,66 @@
 
 				.cyContainer {
 					position: relative !important;
-					height: 500px !important;
+					height: 42rem !important;
 				}
-      }
-    }
-  }
+			}
+			.controls {
+				width: 25rem !important;
+
+				.filter-panel-root {
+					padding: 20px;
+					border: 1px solid black;
+					background: #F9F9F9;
+					height: 42rem;
+
+					.no-selected-text {
+						color: rgb(75, 74, 74);
+						font-family: Arial, Helvetica, sans-serif;
+						font-size: 18px;
+						text-align: center;
+						position: relative;
+						top: 50%; 
+						transform: translateY(-50%);
+					}
+
+					.info-container {
+						font-family: Arial, Helvetica, sans-serif;
+						line-height: 1.5em;
+						h2 {
+							font-weight: 400;
+						}
+						.title {
+							// font-size: 18px
+						}
+						.interaction-container {
+							overflow-y: scroll;
+							height: calc(100vh - 18rem);
+							.gene-container {
+								border: solid 1px #c8c8c8;
+								border-radius: 4px;
+								margin-bottom: 10px;
+								.gene-title {
+									background: #eee;
+									padding: 5px;
+									font-weight: 600;
+								}
+								.gene-detail {
+									padding: 10px;
+									text-transform: capitalize;
+
+									.role {
+										margin-left: 20px;
+									}
+									.data-set {
+										margin-left: 20px;
+										font-weight: 600;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+  	}
 }
