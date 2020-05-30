@@ -89,7 +89,7 @@ function createCytoscapeConfig(elements) {
 				}
 			},
 			{
-				selector: 'edge[group=gen]',
+				selector: 'edge[group="gen"]',
 				style: {
 					'line-color': 'red',
 					'haystack-radius': '0.6'
