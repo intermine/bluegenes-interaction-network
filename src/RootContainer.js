@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { queryData } from './query';
 import GeneInteractionNetwork from './components/GeneInteractionNetwork';
 import InteractionDetail from './components/InteractionDetail';
+import FilterPanel from './components/FilterPanel';
 
 const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
 	const [loading, setloading] = useState(false);
 	const [selectedNodeData, setSelectedNodeData] = useState({});
+	const [selectedInteraction, ChangeInteractionType] = useState('');
 
 	useEffect(() => {
 		setloading(true);
@@ -24,6 +26,11 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		const { target } = edges[0]._private.data;
 		data.parent = target;
 		setSelectedNodeData(data);
+	};
+
+	const applyFilter = ev => {
+		const { value } = ev.target;
+		ChangeInteractionType(value);
 	};
 
 	return (
@@ -44,6 +51,10 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						)}
 					</div>
 					<div className="controls">
+						<FilterPanel
+							applyFilter={applyFilter}
+							selectedInteraction={selectedInteraction}
+						/>
 						<InteractionDetail nodeData={selectedNodeData} />
 					</div>
 				</div>

@@ -41,7 +41,25 @@
 					padding: 20px;
 					border: 1px solid black;
 					background: #F9F9F9;
-					height: 42rem;
+					height: 30px;
+					margin-bottom: 20px;
+
+					.filter-option {
+						display: flex;
+						justify-content: space-around;
+						
+						label {
+							font-size: 16px;
+							font-family: Arial, Helvetica, sans-serif;
+						}
+					}
+				}
+
+				.interaction-detail-root {
+					padding: 20px;
+					border: 1px solid black;
+					background: #F9F9F9;
+					height: calc(100vh - 15rem);
 
 					.no-selected-text {
 						color: rgb(75, 74, 74);
@@ -64,7 +82,7 @@
 						}
 						.interaction-container {
 							overflow-y: scroll;
-							height: calc(100vh - 18rem);
+							height: calc(100vh - 25em);
 							.gene-container {
 								border: solid 1px #c8c8c8;
 								border-radius: 4px;

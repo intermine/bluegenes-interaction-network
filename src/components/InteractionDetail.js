@@ -2,7 +2,7 @@ import React from 'react';
 
 const InteractionDetail = ({ nodeData }) => {
 	return (
-		<div className="filter-panel-root">
+		<div className="interaction-detail-root">
 			{!Object.keys(nodeData).length ? (
 				<div className="no-selected-text">
 					Click on a gene to get more info about it
