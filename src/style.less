@@ -13,7 +13,23 @@
 	.rootContainer {
 		border: 1px solid black;
 		padding: 20px;
-
+		::-webkit-scrollbar {
+			-webkit-appearance: none;
+			width: 8px;
+			background-color: rgba(78, 78, 78, 0);
+			border-radius: 100px;
+		}
+		::-webkit-scrollbar {
+			background-color: rgba(0, 0, 0, 0.09);
+		}
+		::-webkit-scrollbar-thumb:vertical {
+			background: rgba(70, 70, 70, 0.5);
+			border-radius: 100px;
+		}
+			::-webkit-scrollbar-thumb:vertical:active {
+			background: rgba(26, 26, 26, 0.61);
+			border-radius: 100px;
+		}
 		.innerContainer {
 			display: flex;
 
@@ -77,12 +93,9 @@
 						h2 {
 							font-weight: 400;
 						}
-						.title {
-							// font-size: 18px
-						}
 						.interaction-container {
-							overflow-y: scroll;
-							height: calc(100vh - 25em);
+							overflow-y: auto;
+							max-height: calc(100vh - 25em);
 							.gene-container {
 								border: solid 1px #c8c8c8;
 								border-radius: 4px;

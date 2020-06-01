@@ -59,7 +59,7 @@ function createCytoscapeConfig(elements) {
 			{
 				selector: ':selected',
 				css: {
-					'border-width': 4,
+					'border-width': 3,
 					'border-color': 'black'
 				}
 			},
