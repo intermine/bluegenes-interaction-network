@@ -1,71 +1,46 @@
-function getGraphData(info) {
-	const d = separateDataAccToType(info);
+function getGraphData(data) {
 	const elements = [];
-	d.forEach(data => {
-		data.forEach(el => {
-			const { symbol, primaryIdentifier } = el;
-			elements.push({
-				group: 'nodes',
-				data: {
-					id: el.symbol,
-					bg: '#6582F9',
-					info: {
-						class: el.class,
-						symbol,
-						primaryIdentifier
-					}
+	data.forEach(el => {
+		const { symbol, primaryIdentifier } = el;
+		elements.push({
+			group: 'nodes',
+			data: {
+				id: el.symbol,
+				bg: '#787776',
+				info: {
+					class: el.class,
+					symbol,
+					primaryIdentifier
 				}
-			});
-			el.interactions &&
-				el.interactions.forEach(interactors => {
-					const { symbol, primaryIdentifier } = interactors.participant2;
-					const { type } = interactors.details[0];
-					elements.push({
-						group: 'nodes',
-						data: {
-							id: symbol,
-							bg: '#F9E465',
-							info: {
-								class: interactors.class,
-								primaryIdentifier,
-								details: interactors.details
-							}
-						}
-					});
-					elements.push({
-						group: 'edges',
-						data: {
-							target: el.symbol,
-							source: symbol,
-							group: type == 'physical' ? 'phy' : 'gen'
-						}
-					});
-				});
+			}
 		});
+		el.interactions &&
+			el.interactions.forEach(interactors => {
+				const { symbol, primaryIdentifier } = interactors.participant2;
+				const { type } = interactors.details[0];
+				elements.push({
+					group: 'nodes',
+					data: {
+						id: symbol,
+						bg: '#F9E465',
+						info: {
+							class: interactors.class,
+							primaryIdentifier,
+							details: interactors.details
+						}
+					}
+				});
+				elements.push({
+					group: 'edges',
+					data: {
+						target: el.symbol,
+						source: symbol,
+						group: type == 'physical' ? '' : 'gen'
+					}
+				});
+			});
 	});
 	return elements;
-}
-
-function separateDataAccToType(data) {
-	let phy = [],
-		gen = [];
-	data.forEach(d => {
-		let p = false,
-			g = false;
-		d.interactions.forEach(i => {
-			i.details.forEach(e => {
-				if (!p && e.type == 'physical') {
-					phy.push(d);
-					p = true;
-				}
-				if (!g && e.type == 'genetic') {
-					gen.push(d);
-					g = true;
-				}
-			});
-		});
-	});
-	return [phy, gen];
 }
 
 function createCytoscapeConfig(elements) {
@@ -82,16 +57,23 @@ function createCytoscapeConfig(elements) {
 				}
 			},
 			{
+				selector: ':selected',
+				css: {
+					'border-width': 4,
+					'border-color': 'black'
+				}
+			},
+			{
 				selector: 'edge',
 				style: {
-					'line-color': 'green',
+					'line-color': '#F56139',
 					'curve-style': 'haystack'
 				}
 			},
 			{
 				selector: 'edge[group="gen"]',
 				style: {
-					'line-color': 'red',
+					'line-color': '#76B3F0',
 					'haystack-radius': '0.6'
 				}
 			}

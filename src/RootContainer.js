@@ -8,7 +8,10 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
 	const [loading, setloading] = useState(false);
 	const [selectedNodeData, setSelectedNodeData] = useState({});
-	const [selectedInteraction, ChangeInteractionType] = useState('');
+	const [selectedInteraction, ChangeInteractionType] = useState('Any');
+	const [physicalTypeData, setPhysicalData] = useState([]);
+	const [geneticTypeData, setGeneticData] = useState([]);
+	const [filteredData, setFilteredData] = useState([]);
 
 	useEffect(() => {
 		setloading(true);
@@ -18,8 +21,33 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		}).then(data => {
 			setloading(false);
 			setData(data);
+			setFilteredData(data);
+			separateData(data);
 		});
 	}, []);
+
+	const separateData = data => {
+		let phy = [],
+			gen = [];
+		data.forEach(d => {
+			let p = false,
+				g = false;
+			d.interactions.forEach(i => {
+				i.details.forEach(e => {
+					if (!p && e.type == 'physical') {
+						phy.push(d);
+						p = true;
+					}
+					if (!g && e.type == 'genetic') {
+						gen.push(d);
+						g = true;
+					}
+				});
+			});
+		});
+		setPhysicalData(phy);
+		setGeneticData(gen);
+	};
 
 	const getSelectedNodeData = node => {
 		const { data, edges } = node.target[0]._private;
@@ -31,6 +59,9 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	const applyFilter = ev => {
 		const { value } = ev.target;
 		ChangeInteractionType(value);
+		if (value == 'Physical') setFilteredData(physicalTypeData);
+		else if (value == 'Genetic') setFilteredData(geneticTypeData);
+		else if (value == 'Any') setFilteredData(data);
 	};
 
 	return (
@@ -43,7 +74,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						<span className="chart-title">Interaction Network</span>
 						{data.length ? (
 							<GeneInteractionNetwork
-								data={data}
+								data={filteredData}
 								sendNodeData={getSelectedNodeData}
 							/>
 						) : (
