@@ -1,127 +1,157 @@
 .bluegenesInteractionsNetwork {
-  // put all your css classes inside this block. Keeping them
-  // nested under the tool name prevents your styles from
-  // leaking out and affecting other elements by accident.
+    // put all your css classes inside this block. Keeping them
+    // nested under the tool name prevents your styles from
+    // leaking out and affecting other elements by accident.
 
-  // If you want to learn more about LESS, visit lesscss.org.
+    // If you want to learn more about LESS, visit lesscss.org.
 
-  // to build your css, run `lessc src/style.css dist/style.css --clean-css`
-  // in your terminal
+    // to build your css, run `lessc src/style.css dist/style.css --clean-css`
+    // in your terminal
 
 
-  // this is just an example class for root div element, you may modify or delete it as per your usecase
-	.rootContainer {
-		border: 1px solid black;
-		padding: 20px;
-		::-webkit-scrollbar {
-			-webkit-appearance: none;
-			width: 8px;
-			background-color: rgba(78, 78, 78, 0);
-			border-radius: 100px;
-		}
-		::-webkit-scrollbar {
-			background-color: rgba(0, 0, 0, 0.09);
-		}
-		::-webkit-scrollbar-thumb:vertical {
-			background: rgba(70, 70, 70, 0.5);
-			border-radius: 100px;
-		}
-			::-webkit-scrollbar-thumb:vertical:active {
-			background: rgba(26, 26, 26, 0.61);
-			border-radius: 100px;
-		}
-		.innerContainer {
-			display: flex;
+    // this is just an example class for root div element, you may modify or delete it as per your usecase
+    .rootContainer {
+        border: 1px solid black;
+        padding: 20px;
 
-			.graph {
-				width: calc(100vw - 15rem);
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 8px;
+            background-color: rgba(78, 78, 78, 0);
+            border-radius: 100px;
+        }
 
-				.chart-title {
-					font-weight: 300;
-					font-size: 24px;
-					font-family: sans-serif;
-					display: flex;
-					justify-content: center;
-					margin: 12px;
-				}
+        ::-webkit-scrollbar {
+            background-color: rgba(0, 0, 0, 0.09);
+        }
 
-				.cyContainer {
-					position: relative !important;
-					height: 42rem !important;
-				}
-			}
-			.controls {
-				width: 25rem !important;
+        ::-webkit-scrollbar-thumb:vertical {
+            background: rgba(70, 70, 70, 0.5);
+            border-radius: 100px;
+        }
 
-				.filter-panel-root {
-					padding: 20px;
-					border: 1px solid black;
-					background: #F9F9F9;
-					height: 30px;
-					margin-bottom: 20px;
+        ::-webkit-scrollbar-thumb:vertical:active {
+            background: rgba(26, 26, 26, 0.61);
+            border-radius: 100px;
+        }
 
-					.filter-option {
-						display: flex;
-						justify-content: space-around;
-						
-						label {
-							font-size: 16px;
-							font-family: Arial, Helvetica, sans-serif;
-						}
+        .innerContainer {
+            display: flex;
+
+            .graph {
+                width: calc(100vw - 15rem);
+
+                .chart-title {
+                    font-weight: 300;
+                    font-size: 24px;
+                    font-family: sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    margin: 12px;
+                }
+
+                .cyContainer {
+                    position: relative !important;
+                    height: 42rem !important;
+                }
+            }
+
+            .controls {
+                width: 25rem !important;
+
+                .filter-panel-root {
+                    padding: 20px;
+                    border: 1px solid black;
+                    background: #F9F9F9;
+                    height: auto;
+                    margin-bottom: 20px;
+
+                    .title {
+                        font-family: Arial, Helvetica, sans-serif;
+                        margin-bottom: 5px;
+                    }
+
+                    .filter-option {
+                        display: flex;
+                        justify-content: space-around;
+                        cursor: pointer;
+                        margin-right: 10px;
+                        padding: 5px;
+                        font-size: 16px;
+                        font-family: arial;
+                    }
+
+                    input {
+                        font-size: 20px;
+                        cursor: pointer;
 					}
-				}
-
-				.interaction-detail-root {
-					padding: 20px;
-					border: 1px solid black;
-					background: #F9F9F9;
-					height: calc(100vh - 15rem);
-
-					.no-selected-text {
-						color: rgb(75, 74, 74);
-						font-family: Arial, Helvetica, sans-serif;
-						font-size: 18px;
-						text-align: center;
-						position: relative;
-						top: 50%; 
-						transform: translateY(-50%);
+					input:checked {
+						background: blue;
 					}
 
-					.info-container {
-						font-family: Arial, Helvetica, sans-serif;
-						line-height: 1.5em;
-						h2 {
-							font-weight: 400;
-						}
-						.interaction-container {
-							overflow-y: auto;
-							max-height: calc(100vh - 25em);
-							.gene-container {
-								border: solid 1px #c8c8c8;
-								border-radius: 4px;
-								margin-bottom: 10px;
-								.gene-title {
-									background: #eee;
-									padding: 5px;
-									font-weight: 600;
-								}
-								.gene-detail {
-									padding: 10px;
-									text-transform: capitalize;
+                    label {
+                        cursor: pointer;
+                    }
+                }
 
-									.role {
-										margin-left: 20px;
-									}
-									.data-set {
-										margin-left: 20px;
-										font-weight: 600;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-  	}
+
+                .interaction-detail-root {
+                    padding: 20px;
+                    border: 1px solid black;
+                    background: #F9F9F9;
+                    height: calc(100vh - 15rem);
+
+                    .no-selected-text {
+                        color: rgb(75, 74, 74);
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 18px;
+                        text-align: center;
+                        position: relative;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+
+                    .info-container {
+                        font-family: Arial, Helvetica, sans-serif;
+                        line-height: 1.5em;
+
+                        h2 {
+                            font-weight: 400;
+                        }
+
+                        .interaction-container {
+                            overflow-y: auto;
+                            max-height: calc(100vh - 25em);
+
+                            .gene-container {
+                                border: solid 1px #c8c8c8;
+                                border-radius: 4px;
+                                margin-bottom: 10px;
+
+                                .gene-title {
+                                    background: #eee;
+                                    padding: 5px;
+                                    font-weight: 600;
+                                }
+
+                                .gene-detail {
+                                    padding: 10px;
+                                    text-transform: capitalize;
+
+                                    .role {
+                                        margin-left: 20px;
+                                    }
+
+                                    .data-set {
+                                        margin-left: 20px;
+                                        font-weight: 600;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

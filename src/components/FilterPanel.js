@@ -4,20 +4,19 @@ const FilterPanel = ({ applyFilter, selectedInteraction }) => {
 	const moreOptions = ['Physical', 'Genetic', 'Any'];
 	return (
 		<div className="filter-panel-root">
-			<div>Filter according to Interaction Type:</div>
+			<div className="title">Filter according to Interaction Type:</div>
 			<div className="filter-option">
 				{moreOptions.map(term => (
-					<>
+					<div key={term}>
 						<input
 							type="radio"
-							key={term}
 							id={term}
 							value={term}
 							onChange={applyFilter}
 							checked={selectedInteraction === term}
 						/>
 						<label htmlFor={term}>{term}</label>
-					</>
+					</div>
 				))}
 			</div>
 		</div>
