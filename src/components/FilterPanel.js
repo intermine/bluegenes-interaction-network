@@ -7,7 +7,14 @@ const FilterPanel = ({ applyFilter, selectedInteraction }) => {
 			<div className="title">Filter according to Interaction Type:</div>
 			<div className="filter-option">
 				{moreOptions.map(term => (
-					<div key={term}>
+					<div
+						className={
+							selectedInteraction === term
+								? 'option selected'
+								: 'option not-selected'
+						}
+						key={term}
+					>
 						<input
 							type="radio"
 							id={term}

@@ -74,23 +74,28 @@
                     .filter-option {
                         display: flex;
                         justify-content: space-around;
-                        cursor: pointer;
                         margin-right: 10px;
                         padding: 5px;
                         font-size: 16px;
                         font-family: arial;
-                    }
 
-                    input {
-                        font-size: 20px;
-                        cursor: pointer;
-					}
-					input:checked {
-						background: blue;
-					}
-
-                    label {
-                        cursor: pointer;
+                        .option {
+                            padding: 10px;
+                            cursor: pointer;
+                        }
+                        .selected {
+                            color: white;
+                            background: rgb(72, 116, 235);
+                        }
+                        .not-selected {
+                            background: rgba(72, 116, 235, 0.2);
+                        }
+                        input {
+                            display: none;
+                        }
+                        label {
+                            cursor: pointer;
+                        }
                     }
                 }
 
