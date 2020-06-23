@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FilterPanel = ({ applyFilter, selectedInteraction }) => {
-	const moreOptions = ['Physical', 'Genetic', 'Any'];
+	const moreOptions = ['Physical', 'Genetic', 'Both'];
 	return (
 		<div className="filter-panel-root">
 			<div className="title">Filter according to Interaction Type:</div>
@@ -13,6 +13,14 @@ const FilterPanel = ({ applyFilter, selectedInteraction }) => {
 								? 'option selected'
 								: 'option not-selected'
 						}
+						style={{
+							borderBottom:
+								term == 'Genetic'
+									? '1.5px solid #76B3F0'
+									: term == 'Physical'
+									? '1.5px solid #F56139'
+									: ''
+						}}
 						key={term}
 					>
 						<input
