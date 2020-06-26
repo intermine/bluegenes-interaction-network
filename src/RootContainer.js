@@ -8,7 +8,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
 	const [loading, setloading] = useState(false);
 	const [selectedNodeData, setSelectedNodeData] = useState({});
-	const [selectedInteraction, ChangeInteractionType] = useState('Any');
+	const [selectedInteraction, ChangeInteractionType] = useState('Both');
 	const [physicalTypeData, setPhysicalData] = useState([]);
 	const [geneticTypeData, setGeneticData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
@@ -64,7 +64,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		ChangeInteractionType(value);
 		if (value == 'Physical') setFilteredData(physicalTypeData);
 		else if (value == 'Genetic') setFilteredData(geneticTypeData);
-		else if (value == 'Any') setFilteredData(data);
+		else if (value == 'Both') setFilteredData(data);
 	};
 
 	return (
