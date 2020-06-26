@@ -7,6 +7,7 @@ function getGraphData(data) {
 			data: {
 				id: el.symbol,
 				bg: '#787776',
+				label: el.symbol,
 				info: {
 					class: el.class,
 					symbol,
@@ -23,6 +24,7 @@ function getGraphData(data) {
 					data: {
 						id: symbol,
 						bg: '#F9E465',
+						label: '',
 						info: {
 							class: interactors.class,
 							primaryIdentifier,
@@ -52,7 +54,7 @@ function createCytoscapeConfig(elements) {
 			{
 				selector: 'node',
 				style: {
-					label: 'data(id)',
+					label: 'data(label)',
 					'background-color': 'data(bg)'
 				}
 			},
