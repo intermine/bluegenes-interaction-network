@@ -27,12 +27,35 @@ const RootContainer = ({ serviceUrl, entity }) => {
 		});
 	}, []);
 
+	useEffect(() => {
+		const counts = new Map();
+		filteredData.forEach(geneData => {
+			geneData &&
+				geneData.interactions &&
+				geneData.interactions.filter(item => {
+					let count = counts.get(item.participant2.primaryIdentifier);
+					if (typeof count !== 'undefined') {
+						var freq = count[0];
+						var gene = count[1];
+					}
+					counts.set(
+						item.participant2.primaryIdentifier,
+						count ? [freq + 1, [...gene, geneData]] : [1, [geneData]]
+					);
+					return count === 1;
+				});
+		});
+	}, [filteredData]);
+
 	const separateDataAccToType = data => {
-		const phyTypeArr = [], genTypeArr = [];
+		const phyTypeArr = [],
+			genTypeArr = [];
 		data.forEach(parentData => {
-			const phyInteraction = [], genInteraction = [];
+			const phyInteraction = [],
+				genInteraction = [];
 			parentData.interactions.forEach(int => {
-				let p = false, g = false;
+				let p = false,
+					g = false;
 				int.details.forEach(e => {
 					if (!p && e.type == 'physical') {
 						phyInteraction.push(int);
@@ -72,27 +95,27 @@ const RootContainer = ({ serviceUrl, entity }) => {
 			{loading ? (
 				<h1>Loading...</h1>
 			) : (
-					<div className="innerContainer">
-						<div className="graph">
-							<span className="chart-title">Interaction Network</span>
-							{data.length ? (
-								<GeneInteractionNetwork
-									data={filteredData}
-									sendNodeData={getSelectedNodeData}
-								/>
-							) : (
-									<h2>Data Not Found!</h2>
-								)}
-						</div>
-						<div className="controls">
-							<FilterPanel
-								applyFilter={applyFilter}
-								selectedInteraction={selectedInteraction}
+				<div className="innerContainer">
+					<div className="graph">
+						<span className="chart-title">Interaction Network</span>
+						{data.length ? (
+							<GeneInteractionNetwork
+								data={filteredData}
+								sendNodeData={getSelectedNodeData}
 							/>
-							<InteractionDetail nodeData={selectedNodeData} />
-						</div>
+						) : (
+							<h2>Data Not Found!</h2>
+						)}
 					</div>
-				)}
+					<div className="controls">
+						<FilterPanel
+							applyFilter={applyFilter}
+							selectedInteraction={selectedInteraction}
+						/>
+						<InteractionDetail nodeData={selectedNodeData} />
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
