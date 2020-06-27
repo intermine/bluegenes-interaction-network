@@ -34,6 +34,15 @@ const FilterPanel = ({ applyFilter, selectedInteraction }) => {
 					</div>
 				))}
 			</div>
+			<div className="node-filter">
+				<div>Shared Nodes:</div>
+				<div>
+					<label className="switch">
+						<input type="checkbox" />
+						<span className="slider round"></span>
+					</label>
+				</div>
+			</div>
 		</div>
 	);
 };
