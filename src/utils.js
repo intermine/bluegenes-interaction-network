@@ -54,12 +54,39 @@ function getGraphData(data) {
 	return elements;
 }
 
+function makePie(elements) {
+	// creating array containting the colors each pie node needed
+	const idToColorsMap = elements.reduce((m, elem) => {
+		if (elem.data && elem.data.id) {
+			if (!m[elem.data.id]) m[elem.data.id] = [];
+			m[elem.data.id].push(elem.data.bg);
+		}
+		return m;
+	}, {});
+	// returning object containing all pie nodes with thier styles
+	return Object.keys(idToColorsMap)
+		.filter(key => idToColorsMap[key].length > 1)
+		.map(id => {
+			const pieNodeStyle = {};
+			pieNodeStyle['selector'] = `node[id = '${id}']`;
+			const style = {};
+			const colorLen = idToColorsMap[id].length;
+			for (let i = 1; i <= colorLen; i++) {
+				style[`pie-${i}-background-color`] = idToColorsMap[id][i - 1];
+				style[`pie-${i}-background-size`] = 100 / colorLen;
+			}
+			pieNodeStyle['style'] = style;
+			return pieNodeStyle;
+		});
+}
+
 function createCytoscapeConfig(elements) {
 	return {
 		container: document.getElementById('cy'),
 		elements: elements,
 		grabbable: true,
 		style: [
+			...makePie(elements),
 			{
 				selector: 'node',
 				style: {
