@@ -1,12 +1,19 @@
+import colors from './constant';
+
 function getGraphData(data) {
 	const elements = [];
+	const colorArrLen = colors.length;
+	// setting color of each gene node taking hex code color from constant file
+	for (var i = 0; i < data.length; i++) {
+		data[i].color = colors[i % colorArrLen];
+	}
 	data.forEach(el => {
-		const { symbol, primaryIdentifier } = el;
+		const { symbol, primaryIdentifier, color } = el;
 		elements.push({
 			group: 'nodes',
 			data: {
 				id: el.symbol,
-				bg: '#787776',
+				bg: color,
 				label: el.symbol,
 				info: {
 					class: el.class,
@@ -23,7 +30,7 @@ function getGraphData(data) {
 					group: 'nodes',
 					data: {
 						id: symbol,
-						bg: '#F9E465',
+						bg: color,
 						label: '',
 						info: {
 							class: interactors.class,
