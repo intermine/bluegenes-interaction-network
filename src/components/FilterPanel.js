@@ -1,6 +1,11 @@
 import React from 'react';
 
-const FilterPanel = ({ applyFilter, selectedInteraction }) => {
+const FilterPanel = ({
+	applyFilter,
+	selectedInteraction,
+	updateToggle,
+	toggleStatus
+}) => {
 	const moreOptions = ['Physical', 'Genetic', 'Both'];
 	return (
 		<div className="filter-panel-root">
@@ -38,7 +43,12 @@ const FilterPanel = ({ applyFilter, selectedInteraction }) => {
 				<div>Shared Nodes:</div>
 				<div>
 					<label className="switch">
-						<input type="checkbox" />
+						<input
+							type="checkbox"
+							value={toggleStatus}
+							onChange={updateToggle}
+							checked={toggleStatus}
+						/>
 						<span className="slider round"></span>
 					</label>
 				</div>

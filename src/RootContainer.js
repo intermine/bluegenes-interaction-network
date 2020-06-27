@@ -13,6 +13,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	const [geneticTypeData, setGeneticData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
 	const [sharedInteractionData, setSharedInteractionData] = useState([]);
+	const [toggleStatus, setToggleStatus] = useState(true);
 
 	useEffect(() => {
 		setloading(true);
@@ -53,7 +54,9 @@ const RootContainer = ({ serviceUrl, entity }) => {
 			if (freq > 1) {
 				const filteredMap = geneArr.map(item => ({
 					...item,
-					interactions: item.interactions.filter(g => g.participant2.primaryIdentifier === key)
+					interactions: item.interactions.filter(
+						g => g.participant2.primaryIdentifier === key
+					)
 				}));
 				filteredMap.forEach(item => {
 					if (!map[item.symbol]) map[item.symbol] = item;
@@ -117,7 +120,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						<span className="chart-title">Interaction Network</span>
 						{data.length ? (
 							<GeneInteractionNetwork
-								data={filteredData}
+								data={toggleStatus ? sharedInteractionData : filteredData}
 								sendNodeData={getSelectedNodeData}
 							/>
 						) : (
@@ -128,6 +131,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						<FilterPanel
 							applyFilter={applyFilter}
 							selectedInteraction={selectedInteraction}
+							updateToggle={() => setToggleStatus(!toggleStatus)}
+							toggleStatus={toggleStatus}
 						/>
 						<InteractionDetail nodeData={selectedNodeData} />
 					</div>
