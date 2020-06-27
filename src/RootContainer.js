@@ -12,6 +12,7 @@ const RootContainer = ({ serviceUrl, entity }) => {
 	const [physicalTypeData, setPhysicalData] = useState([]);
 	const [geneticTypeData, setGeneticData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
+	const [sharedInteractionData, setSharedInteractionData] = useState([]);
 
 	useEffect(() => {
 		setloading(true);
@@ -45,6 +46,22 @@ const RootContainer = ({ serviceUrl, entity }) => {
 					return count === 1;
 				});
 		});
+		const map = {};
+		for (const [key, value] of counts.entries()) {
+			const freq = value[0],
+				geneArr = value[1];
+			if (freq > 1) {
+				const filteredMap = geneArr.map(item => ({
+					...item,
+					interactions: item.interactions.filter(g => g.participant2.primaryIdentifier === key)
+				}));
+				filteredMap.forEach(item => {
+					if (!map[item.symbol]) map[item.symbol] = item;
+					else map[item.symbol].interactions.push(...item.interactions);
+				});
+			}
+		}
+		setSharedInteractionData([...Object.values(map)]);
 	}, [filteredData]);
 
 	const separateDataAccToType = data => {
