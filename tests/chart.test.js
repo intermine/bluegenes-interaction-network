@@ -8,7 +8,7 @@ describe('charts', () => {
 	let data = [];
 	beforeAll(() => {
 		return queryData({
-			geneId: '128',
+			geneId: '1016209',
 			serviceUrl: 'https://www.humanmine.org/humanmine',
 			imjsClient: imjs
 		})

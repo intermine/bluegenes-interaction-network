@@ -13,7 +13,7 @@ describe('main', () => {
 			el: document.createElement('div'),
 			service: { root: 'https://www.humanmine.org/humanmine' },
 			state: { testing: true },
-			entity: { Gene: { value: '5468' } },
+			entity: { Gene: { value: '1016209' } },
 			config: {}
 		};
 		expect(() => {

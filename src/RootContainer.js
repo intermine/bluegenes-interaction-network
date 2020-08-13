@@ -3,6 +3,7 @@ import { queryData } from './query';
 import GeneInteractionNetwork from './components/GeneInteractionNetwork';
 import InteractionDetail from './components/InteractionDetail';
 import FilterPanel from './components/FilterPanel';
+import Loading from './components/Loading';
 
 const RootContainer = ({ serviceUrl, entity }) => {
 	const [data, setData] = useState([]);
@@ -36,9 +37,10 @@ const RootContainer = ({ serviceUrl, entity }) => {
 				geneData.interactions &&
 				geneData.interactions.filter(item => {
 					let count = counts.get(item.participant2.primaryIdentifier);
+					let freq, gene;
 					if (typeof count !== 'undefined') {
-						var freq = count[0];
-						var gene = count[1];
+						freq = count[0];
+						gene = count[1];
 					}
 					counts.set(
 						item.participant2.primaryIdentifier,
@@ -112,12 +114,12 @@ const RootContainer = ({ serviceUrl, entity }) => {
 
 	return (
 		<div className="rootContainer">
+			<span className="chart-title">Interaction Network</span>
 			{loading ? (
-				<h1>Loading...</h1>
+				<Loading />
 			) : (
 				<div className="innerContainer">
 					<div className="graph">
-						<span className="chart-title">Interaction Network</span>
 						{data.length ? (
 							<GeneInteractionNetwork
 								data={toggleStatus ? sharedInteractionData : filteredData}
