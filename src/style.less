@@ -9,10 +9,10 @@
     // in your terminal
 
 
-    // this is just an example class for root div element, you may modify or delete it as per your usecase
     .rootContainer {
-        border: 1px solid black;
-        padding: 20px;
+        .no-data {
+            margin-left: 15px;
+        }
 
         ::-webkit-scrollbar {
             -webkit-appearance: none;
@@ -35,14 +35,6 @@
             border-radius: 100px;
         }
 
-        .chart-title {
-            font-weight: 300;
-            font-size: 24px;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            margin: 12px;
-        }
         @keyframes inner-container {
             0% {
               opacity: 1;
@@ -147,25 +139,49 @@
             display: flex;
 
             .graph {
-                width: calc(100vw - 15rem);
+                width: 100%;
+                min-height: 300px;
+
+                .confirmation-dialog {
+                    z-index: 1;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #F9F9F9;
+                    padding: 20px;
+                    border: 0.5px solid black;
+                    border-radius: 10px;
+
+                    .confirm-button {
+                        background: rgb(72, 116, 235);
+                        color: white;
+                    }
+                }
 
                 .cyContainer {
                     position: relative !important;
-                    height: 42rem !important;
+                    height: 600px !important;
                 }
             }
 
             .controls {
-                width: 25rem !important;
+                width: 400px !important;
+                overflow-y: auto;
+                overflow-x: hidden;
+                max-height: 600px;
+                display: flex;
+                flex-direction: column;
 
                 .filter-panel-root {
                     padding: 20px;
                     border: 1px solid black;
                     background: #F9F9F9;
                     height: auto;
-                    margin-bottom: 20px;
 
                     .title {
+                        font-size: 18px;
+                        font-weight: 400;
                         font-family: Arial, Helvetica, sans-serif;
                         margin-bottom: 5px;
                     }
@@ -275,16 +291,14 @@
                     padding: 20px;
                     border: 1px solid black;
                     background: #F9F9F9;
-                    height: calc(100vh - 21rem);
+                    flex-grow: 1;
 
                     .no-selected-text {
                         color: rgb(75, 74, 74);
                         font-family: Arial, Helvetica, sans-serif;
                         font-size: 18px;
                         text-align: center;
-                        position: relative;
-                        top: 50%;
-                        transform: translateY(-50%);
+                        margin-top: 25px;
                     }
 
                     .info-container {
@@ -292,12 +306,12 @@
                         line-height: 1.5em;
 
                         h2 {
+                            margin-top: 0;
                             font-weight: 400;
                         }
 
                         .interaction-container {
                             overflow-y: auto;
-                            max-height: calc(100vh - 27em);
 
                             .gene-container {
                                 border: solid 1px #c8c8c8;

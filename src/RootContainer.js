@@ -114,20 +114,15 @@ const RootContainer = ({ serviceUrl, entity }) => {
 
 	return (
 		<div className="rootContainer">
-			<span className="chart-title">Interaction Network</span>
 			{loading ? (
 				<Loading />
-			) : (
+			) : data.length ? (
 				<div className="innerContainer">
 					<div className="graph">
-						{data.length ? (
-							<GeneInteractionNetwork
-								data={toggleStatus ? sharedInteractionData : filteredData}
-								sendNodeData={getSelectedNodeData}
-							/>
-						) : (
-							<h2>Data Not Found!</h2>
-						)}
+						<GeneInteractionNetwork
+							data={toggleStatus ? sharedInteractionData : filteredData}
+							sendNodeData={getSelectedNodeData}
+						/>
 					</div>
 					<div className="controls">
 						<FilterPanel
@@ -139,6 +134,8 @@ const RootContainer = ({ serviceUrl, entity }) => {
 						<InteractionDetail nodeData={selectedNodeData} />
 					</div>
 				</div>
+			) : (
+				<h4 className="no-data">No data found</h4>
 			)}
 		</div>
 	);

@@ -23,8 +23,8 @@ const InteractionDetail = ({ nodeData }) => {
 							<>
 								<div className="title">Interaction Details:</div>
 								<div className="interaction-container">
-									{nodeData.info.details.map(d => (
-										<div className="gene-container" key={d}>
+									{nodeData.info.details.map((d, index) => (
+										<div className="gene-container" key={index}>
 											<div className="gene-title">{d.name}</div>
 											<div className="gene-detail">
 												<div>
@@ -54,8 +54,8 @@ const InteractionDetail = ({ nodeData }) => {
 												{d.dataSets.length && (
 													<div>
 														DataSet:
-														{d.dataSets.map(data => (
-															<div className="data-set" key={data}>
+														{d.dataSets.map((data, i) => (
+															<div className="data-set" key={i}>
 																{data.name}
 															</div>
 														))}

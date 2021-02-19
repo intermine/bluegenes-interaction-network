@@ -80,9 +80,9 @@ function makePie(elements) {
 		});
 }
 
-function createCytoscapeConfig(elements) {
+function createCytoscapeConfig(elements, cytoscapeElement) {
 	return {
-		container: document.getElementById('cy'),
+		container: cytoscapeElement.current,
 		elements: elements,
 		grabbable: true,
 		style: [
