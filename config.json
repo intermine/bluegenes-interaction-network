@@ -9,6 +9,9 @@
       "id": "primaryAccession"
     }
   },
+  "description" : {
+    "Interactions between genes in your list and other genes. Interaction data is both physical and genetic and it is possible to toggle to show just the physical or genetic interactions.  Both physical and genetic interactions are shown by default.  Square nodes represent genes from your list.  Circular nodes represent genes that interact with genes in your list but that are not present in your list.  By default, only genes from your list that interact with more than one other gene are shown.  To show interactions for all the genes in your list, use the “Shared Nodes” toggle.  Genes that interact with genes in your list are coloured according to the genes in your list that they interact with.  Clicking on an interacting gene provides further information about its interaction with the gene in your list, in the right hand pane, including interaction type and the source of the data."
+},
   "files" : {
     "css" : "dist/style.css",
     "js" : "dist/bundle.js"
